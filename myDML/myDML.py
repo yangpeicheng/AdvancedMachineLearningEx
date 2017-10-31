@@ -10,10 +10,10 @@ from NCA import NCA
 from threading import Thread
 import functools
 import math
-
+from bdgNCA import bdgNCA
 # (global) variable definition here
 TRAINING_TIME_LIMIT = 60*10
-global nca
+global nca,bdgnca
 # class definition here
 
 # function definition here
@@ -44,15 +44,17 @@ def timeout(timeout):
 
 @timeout(TRAINING_TIME_LIMIT)
 def train(traindata):
-    global nca
-    nca=NCA(traindata)
-    nca.train()
+    global nca,bdgnca
+    #nca=NCA(traindata)
+    #nca.train()
+    bdgnca=bdgNCA(traindata)
+    bdgnca.train()
 
 def Euclidean_distance(inst_a, inst_b):
     return np.linalg.norm(inst_a - inst_b)
 
 def distance(inst_a, inst_b):           #行向量
-    return nca.myDistance(inst_a,inst_b)   #(A(x-y))T(A(x-y))
+    return bdgnca.myDistance(inst_a,inst_b)   #(A(x-y))T(A(x-y))
 # main program here
 if  __name__ == '__main__':
     pass

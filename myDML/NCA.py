@@ -16,8 +16,8 @@ class NCA:
             self.A+=learnRate*self.deltaA()
 
     def myDistance(self,vec_a,vec_b):
-        trans_a=np.dot(self.A,vec_a.transpose())
-        trans_b=np.dot(self.A,vec_b.transpose())
+        trans_a=np.dot(self.A,vec_a)
+        trans_b=np.dot(self.A,vec_b)
         return np.linalg.norm(trans_a-trans_b)
 
     def classifyLabel(self):
@@ -34,13 +34,12 @@ class NCA:
         self.rowDistanceSum = np.zeros(l)
         for i in range(l):
             for j in range(i+1):
-                self.distanceMatrix[i,j]=math.pow(self.myDistance(self.rawData[i],self.rawData[j]),2)
+                self.distanceMatrix[i,j]=math.exp(-math.pow(self.myDistance(self.rawData[i],self.rawData[j]),2))
                 self.distanceMatrix[j,i]=self.distanceMatrix[i,j]
         for i in range(l):
-            s=sum(self.distanceMatrix[i,:])
+            #s=sum(self.distanceMatrix[i,:])
             for j in range(l):
-                self.distanceMatrix[i,j]/=s
-                self.distanceMatrix[i,j]=math.exp(-self.distanceMatrix[i,j])
+                #self.distanceMatrix[i,j]/=s
                 if i!=j:
                     self.rowDistanceSum[i]+=self.distanceMatrix[i,j]
 

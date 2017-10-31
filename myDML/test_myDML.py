@@ -22,8 +22,8 @@ from NCA import NCA
 if  __name__ == '__main__':
     # test myDML.py
     # load two-moons-dataset
-    train_file = open('C:/Users/yangpc/Desktop/AdvancedMachineLearningEx/myDML/dataset/moons/moons_train.pkl', 'rb')
-    test_file = open('C:/Users/yangpc/Desktop/AdvancedMachineLearningEx/myDML/dataset/moons/moons_test.pkl', 'rb')
+    train_file = open('dataset/moons/moons_train.pkl', 'rb')
+    test_file = open('dataset/moons/moons_test.pkl', 'rb')
     moons_train = pkl.load(train_file) # tuple of training data
     moons_test = pkl.load(test_file) # tuple of testing data
     train_file.close()
