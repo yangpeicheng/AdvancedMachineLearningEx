@@ -10,6 +10,7 @@ import pickle as pkl
 import numpy as np
 import collections
 import sys
+from NCA import NCA
 
 # (global) variable definition here
 
@@ -21,8 +22,8 @@ import sys
 if  __name__ == '__main__':
     # test myDML.py
     # load two-moons-dataset
-    train_file = open('dataset/moons/moons_train.pkl', 'rb')
-    test_file = open('dataset/moons/moons_test.pkl', 'rb')
+    train_file = open('C:/Users/yangpc/Desktop/AdvancedMachineLearningEx/myDML/dataset/moons/moons_train.pkl', 'rb')
+    test_file = open('C:/Users/yangpc/Desktop/AdvancedMachineLearningEx/myDML/dataset/moons/moons_test.pkl', 'rb')
     moons_train = pkl.load(train_file) # tuple of training data
     moons_test = pkl.load(test_file) # tuple of testing data
     train_file.close()
@@ -32,7 +33,7 @@ if  __name__ == '__main__':
     train_Y = moons_train[1] # labels of training data
     test_X = moons_test[0] # instances of testing data
     test_Y = moons_test[1] # labels of testing data
-    
+
     # training
     try:
         myDML.train(moons_train)

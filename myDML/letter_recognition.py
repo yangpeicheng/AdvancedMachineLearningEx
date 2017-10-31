@@ -35,7 +35,6 @@ if  __name__ == '__main__':
         train_Y = LR_train[1] # labels of training data
         test_X = LR_test[0] # instances of testing data
         test_Y = LR_test[1] # labels of testing data
-        
         # training
         try:
             myDML.train(LR_train)
