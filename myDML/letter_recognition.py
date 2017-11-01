@@ -31,9 +31,9 @@ if  __name__ == '__main__':
         train_file.close()
         test_file.close()
         
-        train_X = LR_train[0]*0.1 # instances of training data
+        train_X = LR_train[0] # instances of training data
         train_Y = LR_train[1] # labels of training data
-        test_X = LR_test[0]*0.1 # instances of testing data
+        test_X = LR_test[0] # instances of testing data
         test_Y = LR_test[1] # labels of testing data
         # training
         try:

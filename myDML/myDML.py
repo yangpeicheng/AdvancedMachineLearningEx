@@ -47,7 +47,7 @@ def train(traindata):
     global nca,bdgnca
     #nca=NCA(traindata)
     #nca.train()
-    bdgnca=bdgNCA(traindata)
+    bdgnca=bdgNCA(traindata,itr=1000)
     bdgnca.train()
 
 def Euclidean_distance(inst_a, inst_b):

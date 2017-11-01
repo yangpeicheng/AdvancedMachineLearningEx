@@ -4,13 +4,16 @@ class bdgNCA:
     def __init__(self,traindata):
         self.rawData=traindata[0]*0.1
         self.label=traindata[1]
-        self.A=np.random.rand(self.rawData.shape[1],self.rawData.shape[1])
+        #self.A=np.random.rand(self.rawData.shape[1],self.rawData.shape[1])
+        self.A = np.eye(self.rawData.shape[1], self.rawData.shape[1])
         self.label2indexs=self.classifyLabel()
-        #self.startPoint=np.zeros(self.rawData.shape[1])
-        #self.endPoint = np.zeros(self.rawData.shape[1])
-        #self.normlization()
+        self.startPoint=np.zeros(self.rawData.shape[1])
+        self.endPoint = np.zeros(self.rawData.shape[1])
+        self.normlization()
 
-    def train(self,itr=300,k=20,rate=0.02):
+#test_myDML itr=1000,k=20,rate=0.05, 0.015,0.015
+#letter_recognition itr=200,k=20,rate=0.05
+    def train(self,itr=200,k=20,rate=0.05):
         for i in range(itr):
             print(i)
             self.A+=self.deltaA(k)*rate
@@ -56,11 +59,13 @@ class bdgNCA:
         return np.linalg.norm(inst_a - inst_b)
 
     def myDistance(self,vec_a,vec_b):
+        a=[(vec_a[i]-self.startPoint[i])/(self.endPoint[i]-self.startPoint[i]) for i in range(len(vec_a))]
+        b = [(vec_b[i] - self.startPoint[i]) / (self.endPoint[i] - self.startPoint[i]) for i in range(len(vec_a))]
         '''for i in range(len(vec_a)):
             vec_a[i]=(vec_a[i]-self.startPoint[i])/(self.endPoint[i]-self.startPoint[i])
             vec_b[i] =(vec_b[i] - self.startPoint[i]) / (self.endPoint[i] - self.startPoint[i])'''
-        trans_a=np.dot(self.A,vec_a.transpose())
-        trans_b=np.dot(self.A,vec_b.transpose())
+        trans_a=np.dot(self.A,a)
+        trans_b=np.dot(self.A,b)
         return np.linalg.norm(trans_a-trans_b)
 
     def classifyLabel(self):
